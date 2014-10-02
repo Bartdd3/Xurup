@@ -1,23 +1,65 @@
 package com.example;
 
 import android.support.v7.app.ActionBarActivity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ListActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        //setContentView(R.layout.activity_main);
+        
+        String[] atividades = new String[]{"atividade 1","atividade 2","sair"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, atividades);
+        setListAdapter(adapter);
         
         
         
     }
+    
+    
+    
+    @Override     public void onListItemClick(ListView l, View v, int position, long id) { 
+    	// Do something when a list item is clicked    }
+    	Intent intent;
+    	switch(position){
+    	
+    	case 0:
+    		intent = new Intent(this,atividade1.class);
+    		startActivity(intent);
+    		break;
+    	case 1:
+    		intent = new Intent(this,atividade2.class);
+    		startActivity(intent);	
+    		break;
+    	default:    		
+    		finish();		
+    	
+    	}
+    	
+    	
+    	
+    	
+    	/*
+    	super.onListItemClick(l, v, position, id);
+    	
+    	
+    	Object o = this.getListAdapter().getItem(position);
+    	String item = o.toString();
+    	Toast.makeText(this, item+" - "+position+" - "+id, Toast.LENGTH_LONG).show();*/
+    }
+    
+    /*
     public void AcessarAtividade1(View view){
     	
     	Intent intent = new Intent(this,atividade1.class);
@@ -36,7 +78,7 @@ public class MainActivity extends ActionBarActivity {
     	
     	finish();
     	
-    }
+    }*/
 
    
 
